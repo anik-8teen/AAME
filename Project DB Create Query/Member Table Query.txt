@@ -1,0 +1,38 @@
+USE [AAME]
+GO
+
+/****** Object:  Table [dbo].[MEMBER]    Script Date: 27/04/2021 13:56:08 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[MEMBER](
+	[Si] [int] NOT NULL,
+	[Name] [varchar](30) NOT NULL,
+	[ID] [varchar](10) NOT NULL,
+	[sta] [varchar](10) NOT NULL,
+	[Email] [varchar](20) NOT NULL,
+	[Course] [varchar](5) NOT NULL,
+	[Pass] [nvarchar](15) NOT NULL,
+	[mobile_no] [nvarchar](11) NOT NULL,
+	[picture] [image] NOT NULL,
+	[quiz_attend] [int] NOT NULL,
+	[fidback] [varchar](144) NULL,
+	[problem] [varchar](200) NULL,
+	[problem1_mark] [int] NULL,
+	[problem2_mark] [int] NULL,
+	[problem3_mark] [int] NULL,
+	[quiz_mark] [int] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+

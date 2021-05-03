@@ -1,0 +1,26 @@
+USE [AAME]
+GO
+
+/****** Object:  Table [dbo].[MEMBER_QUSTION]    Script Date: 27/04/2021 13:54:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[MEMBER_QUSTION](
+	[DATE_ADD] [datetime] NULL,
+	[ID] [varchar](10) NULL,
+	[Course] [varchar](10) NULL,
+	[Title] [varchar](50) NULL,
+	[Details] [nvarchar](300) NULL,
+	[Reply] [varchar](300) NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO

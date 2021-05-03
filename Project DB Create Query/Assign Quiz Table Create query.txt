@@ -1,0 +1,31 @@
+USE [AAME]
+GO
+
+/****** Object:  Table [dbo].[Quiz]    Script Date: 27/04/2021 13:51:19 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Quiz](
+	[si] [int] NULL,
+	[Quiz_name] [varchar](60) NOT NULL,
+	[Question] [varchar](100) NULL,
+	[Option_1] [varchar](100) NULL,
+	[Option_2] [varchar](100) NULL,
+	[Option_3] [varchar](100) NULL,
+	[Point] [int] NULL,
+	[correct_answer] [varchar](100) NOT NULL,
+	[quiz_no] [int] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
