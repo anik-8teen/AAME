@@ -299,5 +299,10 @@ namespace Project
             }
             MessageBox.Show("Downloaded", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

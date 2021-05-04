@@ -135,52 +135,90 @@ namespace Project
             con.Close();
         }
         public string insert(string name,string email,string course,string password,string mobile_no,Image picture)
-        { 
+        {
+
+            bool has_value = false;
+            SqlConnection connection = new SqlConnection(cs);
+            string query = "SELECT * From MEMBER";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            connection.Open();
+            SqlDataReader dar = cmd.ExecuteReader();
+            if (dar.HasRows == true)
+            {
+                has_value = true;
+
+            }
+            connection.Close();
             //db = new ArrayList();
 
-            SqlConnection connection = new SqlConnection(cs);
-            string lest_id = "";
-            string lest_si = "";
-            string new_id = "";
-            string new_si = "";
-            string query = "SELECT ID, SI From MEMBER Where SI=(select max(SI) From MEMBER)";
-            SqlCommand cmd = new SqlCommand(query, connection);
-            //cmd.Parameters.AddWithValue("@id", textBox2.Text);
 
-            connection.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.HasRows == true)
+            if (has_value)
             {
-                while (dr.Read())
+                connection = new SqlConnection(cs);
+                string lest_id = "";
+                string lest_si = "";
+                string new_id = "";
+                string new_si = "";
+                query = "SELECT ID, SI From MEMBER Where SI=(select max(SI) From MEMBER)";
+                cmd = new SqlCommand(query, connection);
+                //cmd.Parameters.AddWithValue("@id", textBox2.Text);
+
+                connection.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows == true)
                 {
-                    lest_id = Convert.ToString(dr.GetValue(0)); 
-                    lest_si = Convert.ToString(dr.GetValue(1));
-                    int new_s = Convert.ToInt32(lest_si) + 1;
-                    string id_mid = lest_id.Substring(3, 5);
-                    long id_m = Convert.ToInt64(id_mid) + 1;
-                    new_id = "19-" + Convert.ToString(id_m) + "-3";
-                    new_si = Convert.ToString(new_s);
+                    while (dr.Read())
+                    {
+                        lest_id = Convert.ToString(dr.GetValue(0));
+                        lest_si = Convert.ToString(dr.GetValue(1));
+                        int new_s = Convert.ToInt32(lest_si) + 1;
+                        string id_mid = lest_id.Substring(3, 5);
+                        long id_m = Convert.ToInt64(id_mid) + 1;
+                        new_id = "19-" + Convert.ToString(id_m) + "-3";
+                        new_si = Convert.ToString(new_s);
+
+                    }
+                    dr.Close();
+                    string insert = "Insert into member (si,Name,ID,sta,Email,Course,Pass,mobile_no,picture,quiz_attend,quiz_mark,Has_developer,lacture_note_completed,problem_solved,problem_pont) values(@si,@name,@id,'Bronze',@email,@course,@password,@mobile,@picture,0,0,0,0,0,0)";
+                    //(@si, @name, @id, 'Bronze', @email, @course, @password, @mobile, @picture, 0)";
+                    SqlCommand ins = new SqlCommand(insert, connection);
+                    ins.Parameters.AddWithValue("@si", new_si);
+                    ins.Parameters.AddWithValue("@name", name);
+                    ins.Parameters.AddWithValue("@id", new_id);
+                    ins.Parameters.AddWithValue("@email", email);
+                    ins.Parameters.AddWithValue("@course", course);
+                    ins.Parameters.AddWithValue("@password", password);
+                    ins.Parameters.AddWithValue("@mobile", mobile_no);
+                    ins.Parameters.AddWithValue("@picture", SavedPhoto(picture));
+
+
+                    int a = ins.ExecuteNonQuery();
 
                 }
-                dr.Close();
+                connection.Close();
+                return "Account created! Your Id: " + new_id;
+            }
+            else
+            {
+                connection = new SqlConnection(cs);
                 string insert = "Insert into member (si,Name,ID,sta,Email,Course,Pass,mobile_no,picture,quiz_attend,quiz_mark,Has_developer,lacture_note_completed,problem_solved,problem_pont) values(@si,@name,@id,'Bronze',@email,@course,@password,@mobile,@picture,0,0,0,0,0,0)";
                 //(@si, @name, @id, 'Bronze', @email, @course, @password, @mobile, @picture, 0)";
-                SqlCommand ins = new SqlCommand(insert,connection);
-                ins.Parameters.AddWithValue("@si", new_si);
+                SqlCommand ins = new SqlCommand(insert, connection);
+                ins.Parameters.AddWithValue("@si", 1);
                 ins.Parameters.AddWithValue("@name", name);
-                ins.Parameters.AddWithValue("@id", new_id);
+                ins.Parameters.AddWithValue("@id", "19-41620-3");
                 ins.Parameters.AddWithValue("@email", email);
                 ins.Parameters.AddWithValue("@course", course);
                 ins.Parameters.AddWithValue("@password", password);
                 ins.Parameters.AddWithValue("@mobile", mobile_no);
                 ins.Parameters.AddWithValue("@picture", SavedPhoto(picture));
 
-                
+                connection.Open();
                 int a = ins.ExecuteNonQuery();
-
+                connection.Close();
+                return "Account created! Your Id: 19-41620-3";
             }
-            connection.Close();
-            return "Account created! Your Id: " + new_id;
+            
         }
         
         public void edit_quesArrayList()

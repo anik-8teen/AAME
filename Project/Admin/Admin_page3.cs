@@ -37,14 +37,18 @@ namespace Project
                 bool found_course = false;
                 Cource cource = new Cource();
                 ArrayList c_list = cource.see_cource();
-                foreach(string need in c_list)
+                if (c_list != null)
                 {
-                    if (need == textBox1.Text)
+                    foreach (string need in c_list)
                     {
-                        found_course = true;
-                        break;
+                        if (need == textBox1.Text)
+                        {
+                            found_course = true;
+                            break;
+                        }
                     }
                 }
+                
                 if (!found_course)
                 {
                     Cource cource1 = new Cource();

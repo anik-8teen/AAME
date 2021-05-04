@@ -17,19 +17,12 @@ namespace Project
         public Dashboard()
         {
             InitializeComponent();
+            
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //this.BackgroundImage = Properties.Resources.Background;
-            //this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -147,6 +140,26 @@ namespace Project
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Dashboard_Shown(object sender, EventArgs e)
+        {
+            Admin admin = new Admin();
+            if (admin.Has_Admin() == false)
+            {
+                if (MessageBox.Show("This project has no admin.Ddo you went to create a Admin?", "AAME", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    this.Hide();
+                    Create_Admin ad = new Create_Admin();
+                    ad.Show();
+                }
+                else
+                {
+                    this.Hide();
+                }
+            }
+            
 
         }
     }
