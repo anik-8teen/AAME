@@ -349,6 +349,8 @@ namespace Project
             // 
             // pictureBox4
             // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Gray;
+            this.pictureBox4.Image = global::Project.Properties.Resources.Choce_photo;
             this.pictureBox4.Location = new System.Drawing.Point(657, 801);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(173, 122);
@@ -407,6 +409,7 @@ namespace Project
             this.label14.TabIndex = 44;
             this.label14.Text = "Your Developer";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label14.Visible = false;
             // 
             // label15
             // 

@@ -43,9 +43,22 @@ namespace Project
         public void insert_course(string course_name)
         {
             int si=0;
+            bool has_Course = false;
             SqlConnection con = new SqlConnection(cs);
-            string query = "SELECT MAx(SI) From Course_Table";
+            string query = "SELECT * From Course_Table";
             SqlCommand cmd = new SqlCommand(query, con);
+            con.Open();
+            SqlDataReader dar = cmd.ExecuteReader();
+            if (dar.HasRows == true)
+            {
+                has_Course = true;
+            }
+            con.Close();
+
+
+            con = new SqlConnection(cs);
+            query = "SELECT MAx(SI) From Course_Table";
+            cmd = new SqlCommand(query, con);
             course = new ArrayList();
             course.Clear();
 
@@ -53,7 +66,7 @@ namespace Project
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {
-                while (dr.Read())
+                while (dr.Read() && has_Course)
                 {
                     si=Convert.ToInt32(dr.GetValue(0));
                 }

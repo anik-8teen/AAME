@@ -131,7 +131,7 @@ namespace Project
             this.button9.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(119, 37);
-            this.button9.TabIndex = 33;
+            this.button9.TabIndex = 0;
             this.button9.Text = "Save";
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);

@@ -185,5 +185,16 @@ namespace Project
             Developer_page9 dv = new Developer_page9(id);
             dv.Show();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text != "Type here for sarche")
+            {
+                Developer mb = new Developer();
+                DataView dv = new DataView(mb.BindQustionDataGridView(id));
+                dv.RowFilter = string.Format("Title LIKE '%{0}%'", textBox1.Text);
+                dataGridView1.DataSource = dv;
+            }
+        }
     }
 }

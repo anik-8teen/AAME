@@ -59,6 +59,7 @@ namespace Project
             Developer dv = new Developer();
             if (mb.get_info(id).HAS_DEVELOPER != 0)
             {
+                label14.Visible = true;
                 label15.Visible = true;
                 pictureBox4.Visible = true;
                 label15.Text = dv.get_info(mb.get_info(id).DEVELOPER_ID).NAME;
@@ -66,6 +67,7 @@ namespace Project
             }
             else
             {
+                label14.Visible =false;
                 label15.Visible = false;
                 pictureBox4.Visible = false;
             }
